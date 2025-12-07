@@ -27,10 +27,10 @@ def server_main():
     conn, addr = s.accept()
     print("Client connected from", addr)
 
-    # 1) Send certificate bundle
+    # Send certificate bundle
     conn.sendall((json.dumps(cert_bundle) + "\n").encode())
 
-    # 2) Receive encrypted AES key
+    # Receive encrypted AES key
     enc_key_b64 = conn.recv(4096).strip()
     enc_key = base64.b64decode(enc_key_b64)
 
@@ -38,7 +38,7 @@ def server_main():
     session_key = rsa_cipher.decrypt(enc_key)
     print("Session key established.")
 
-    # 3) Communicate using AES-CBC (simple for demo)
+    # Communicate using AES-CBC (simple for demo)
     while True:
         data = conn.recv(4096)
         if not data:
