@@ -1,4 +1,3 @@
-# server.py
 import socket, json, base64
 from pathlib import Path
 from Crypto.PublicKey import RSA

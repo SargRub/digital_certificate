@@ -1,4 +1,3 @@
-# ca.py
 import json, base64, datetime
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256

@@ -1,4 +1,3 @@
-# client.py
 import socket, json, base64
 from pathlib import Path
 from Crypto.PublicKey import RSA
@@ -40,12 +39,12 @@ def client_main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(("127.0.0.1", 5050))
 
-    # 1) Receive certificate bundle (one line JSON)
+    # Receive certificate bundle (one line JSON)
     bundle_line = s.recv(8192).decode().strip()
     cert_bundle = json.loads(bundle_line)
     server_pub = verify_cert_bundle(cert_bundle)
 
-    # 2) Generate AES session key and send encrypted key
+    # Generate AES session key and send encrypted key
     session_key = get_random_bytes(32)  # 256-bit
     rsa_cipher = PKCS1_OAEP.new(server_pub)
     enc_key = rsa_cipher.encrypt(session_key)
