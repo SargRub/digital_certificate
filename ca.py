@@ -24,7 +24,7 @@ def issue_server_cert(server_name: str, server_pub_pem: bytes):
     cert = {
         "subject": server_name,
         "public_key_pem": server_pub_pem.decode(),
-        "issuer": "MyToyCA",
+        "issuer": "The Certificate Authority",
         "valid_from": datetime.datetime.utcnow().isoformat(),
         "valid_to": (datetime.datetime.utcnow() + datetime.timedelta(days=365)).isoformat()
     }
